@@ -1,0 +1,20 @@
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csprojAssemblyReference.cache
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.Properties.Resources.resources
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csproj.GenerateResource.cache
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csproj.CoreCompileInputs.cache
+C:\Users\David\source\repos\AutoBackup\AutoBackup\bin\Debug\AutoBackup.exe.config
+C:\Users\David\source\repos\AutoBackup\AutoBackup\bin\Debug\AutoBackup.exe
+C:\Users\David\source\repos\AutoBackup\AutoBackup\bin\Debug\AutoBackup.pdb
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.exe
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.pdb
+C:\Users\David\source\repos\AutoBackup\AutoBackup\obj\Debug\AutoBackup.MainForm.resources
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\bin\Debug\AutoBackup.exe.config
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\bin\Debug\AutoBackup.exe
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\bin\Debug\AutoBackup.pdb
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csprojAssemblyReference.cache
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.MainForm.resources
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.Properties.Resources.resources
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csproj.GenerateResource.cache
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.csproj.CoreCompileInputs.cache
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.exe
+C:\Users\David\Google Drive\Programmieren\AutoBackup\AutoBackup\obj\Debug\AutoBackup.pdb
