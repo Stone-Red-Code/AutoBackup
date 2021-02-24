@@ -4,26 +4,24 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AutoBackup
 {
-    class Backup
+    internal class Backup
     {
         volatile public int processCount = 0;
         public List<string> currentStatus = new List<string>();
         public bool windowVisible = false;
 
-
-        List<string> sourceFolders = new List<string>();
-        List<List<string>> destinationFolders = new List<List<string>>();
-        List<ulong[]> optionsList = new List<ulong[]>();
-        List<bool> isRunning = new List<bool>();
-        readonly Stopwatch stopwatch;
-        readonly Timer timer;
-        bool isON = false;
+        private List<string> sourceFolders = new List<string>();
+        private List<List<string>> destinationFolders = new List<List<string>>();
+        private List<ulong[]> optionsList = new List<ulong[]>();
+        private List<bool> isRunning = new List<bool>();
+        private readonly Stopwatch stopwatch;
+        private readonly Timer timer;
+        private bool isON = false;
 
         public Backup()
         {
@@ -60,9 +58,8 @@ namespace AutoBackup
             */
         }
 
-        void CheckIfFilesChanged()
+        private void CheckIfFilesChanged()
         {
-
         }
 
         public void OFF()
@@ -141,14 +138,14 @@ namespace AutoBackup
             }
         }
 
-        void BackupFolder(int index, ulong maxBackupFolders)
+        private void BackupFolder(int index, ulong maxBackupFolders)
         {
             if (index < destinationFolders.Count)
             {
                 Task.Run(() =>
                 {
                     processCount++;
-                    
+
                     foreach (string destinationFolder in destinationFolders[index])
                     {
                         if (Directory.Exists(destinationFolder))
@@ -171,7 +168,7 @@ namespace AutoBackup
                         {
                             MessageBox.Show(destinationFolder + " Does not exist!");
                         }
-                        CopyDirecotory(sourceFolders[index], destinationFolder + "\\Backup " + DateTime.Now.ToString().Replace(":", "-").Replace("/",".").Replace("\\","."), index, GetFileCount(sourceFolders[index]));
+                        CopyDirecotory(sourceFolders[index], destinationFolder + "\\Backup " + DateTime.Now.ToString().Replace(":", "-").Replace("/", ".").Replace("\\", "."), index, GetFileCount(sourceFolders[index]));
                     }
                     processCount--;
 
@@ -180,7 +177,7 @@ namespace AutoBackup
             }
         }
 
-        void DeleteDirectory(string targetDir)
+        private void DeleteDirectory(string targetDir)
         {
             File.SetAttributes(targetDir, FileAttributes.Normal);
 
@@ -201,7 +198,7 @@ namespace AutoBackup
             Directory.Delete(targetDir, false);
         }
 
-        int CopyDirecotory(string sourcePath, string destinationPath, int index, int fileCount, int filesCopied = 0)
+        private int CopyDirecotory(string sourcePath, string destinationPath, int index, int fileCount, int filesCopied = 0)
         {
             if (isON == false) return 0;
             if (!HasReadAccessToFolder(sourcePath)) return 0;
@@ -218,7 +215,7 @@ namespace AutoBackup
                 foreach (string file in Directory.GetFiles(sourcePath))
                 {
                     if (isON == false) return 0;
-                   
+
                     if (windowVisible)
                     {
                         if (fileCount > 0)
@@ -261,7 +258,7 @@ namespace AutoBackup
             return filesCopied;
         }
 
-        int GetFileCount(string path)
+        private int GetFileCount(string path)
         {
             try
             {
@@ -294,7 +291,6 @@ namespace AutoBackup
                 hasAccess = false;
             }
             return hasAccess;
-
         }
     }
 }
