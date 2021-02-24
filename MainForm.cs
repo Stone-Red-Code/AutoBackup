@@ -14,18 +14,18 @@ namespace AutoBackup
 {
     public partial class MainForm : Form
     {
-        private List<string> sourceFolders = new List<string>();
-        private List<List<string>> destinationFolders = new List<List<string>>();
-        private List<int[]> optionsList = new List<int[]>();
-        private readonly Backup backup;
+        List<string> sourceFolders = new List<string>();
+        List<List<string>> destinationFolders = new List<List<string>>();
+        List<int[]> optionsList = new List<int[]>();
+        readonly Backup backup;
 
-        private bool addSourceFolder = true;
-        private bool blockWrite = false;
+        bool addSourceFolder = true;
+        bool blockWrite = false;
 
-        private readonly string localApplicationDataPath;
+        readonly string localApplicationDataPath;
 
-        private const string AppName = "AutoBackup";
-        private const string registrykey = "HKEY_CURRENT_USER\\" + AppName;
+        const string AppName = "AutoBackup";
+        const string registrykey = "HKEY_CURRENT_USER\\" + AppName;
 
         public MainForm()
         {
@@ -63,7 +63,7 @@ namespace AutoBackup
 
             toolTip.SetToolTip(maxBackupsNumericUpDown, "0 = no limit");
 
-            statusLabel.Location = new Point(13, 13);
+            statusLabel.Location = new Point(13,13);
             //CopyDirecotory("D:\\Test","D:\\TestCopy");
         }
 
@@ -103,7 +103,7 @@ namespace AutoBackup
             statusLabel.Text = textToDisplay;
         }
 
-        private void LoadFolders()
+        void LoadFolders()
         {
             if (!File.Exists(localApplicationDataPath + "\\data.save"))
                 return;
@@ -126,7 +126,7 @@ namespace AutoBackup
                 string options = line.Substring(line.LastIndexOf(">"));
                 line = line.Replace(options, "");
 
-                string o3 = options.Substring(options.LastIndexOf(";") + 1);
+                string o3 = options.Substring(options.LastIndexOf(";")+1);
                 options = options.Remove(options.LastIndexOf(";"));
                 string o2 = options.Substring(options.LastIndexOf(";"));
                 options = options.Replace(o2, "");
@@ -135,7 +135,7 @@ namespace AutoBackup
                 optionsList[index][2] = int.Parse(o3);
                 optionsList[index][1] = int.Parse(o2.Replace(";", ""));
                 optionsList[index][0] = int.Parse(o1);
-
+                
                 while (line.Contains("|"))
                 {
                     string folder = line.Substring(line.LastIndexOf("|"));
@@ -384,6 +384,7 @@ namespace AutoBackup
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
         }
     }
 }
