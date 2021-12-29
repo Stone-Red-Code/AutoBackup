@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -43,9 +44,9 @@ namespace AutoBackup
                 if ((string)Registry.GetValue(registrykey, "OnOff", "Off") == "On")
                 {
                     OnOffToggleButton_Click(null, null);
-                    this.ShowInTaskbar = false;
-                    this.Visible = false;
-                    this.WindowState = FormWindowState.Minimized;
+                    ShowInTaskbar = false;
+                    Visible = false;
+                    WindowState = FormWindowState.Minimized;
                 }
             }
             catch { }
@@ -53,9 +54,9 @@ namespace AutoBackup
             MainForm_SizeChanged(null, null);
             MainTimer.Start();
 
-            notifyIcon.Icon = this.Icon;
+            notifyIcon.Icon = Icon;
             notifyIcon.Visible = true;
-            notifyIcon.Text = this.Text;
+            notifyIcon.Text = Text;
 
             toolTip.SetToolTip(maxBackupsNumericUpDown, "0 = no limit");
 
@@ -102,7 +103,9 @@ namespace AutoBackup
         private void LoadFolders()
         {
             if (!File.Exists(localApplicationDataPath + "\\data.save"))
+            {
                 return;
+            }
 
             int index = 0;
             string[] lines = File.ReadAllLines(localApplicationDataPath + "\\data.save");
@@ -195,7 +198,7 @@ namespace AutoBackup
 
         private void SelectFolderButton_Click(object sender, EventArgs e)
         {
-            using (var fbd = new FolderBrowserDialog())
+            using (FolderBrowserDialog fbd = new FolderBrowserDialog())
             {
                 DialogResult result = fbd.ShowDialog();
 
@@ -296,7 +299,10 @@ namespace AutoBackup
 
         private void BackupTimeNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (blockWrite) return;
+            if (blockWrite)
+            {
+                return;
+            }
             //Registry.SetValue(registrykey, "backupTime", backupTimeNumericUpDown.Value);
             string[] lines = File.ReadAllLines(localApplicationDataPath + "\\data.save");
             string options = lines[sourceFoldersListBox.SelectedIndex].Substring(lines[sourceFoldersListBox.SelectedIndex].LastIndexOf(">"));
@@ -311,7 +317,10 @@ namespace AutoBackup
 
         private void TimeUnitComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (blockWrite) return;
+            if (blockWrite)
+            {
+                return;
+            }
             //Registry.SetValue(registrykey, "timeUnit", timeUnitComboBox.SelectedIndex);
             string[] lines = File.ReadAllLines(localApplicationDataPath + "\\data.save");
             string options = lines[sourceFoldersListBox.SelectedIndex].Substring(lines[sourceFoldersListBox.SelectedIndex].LastIndexOf(">"));
@@ -326,7 +335,10 @@ namespace AutoBackup
 
         private void MaxBackupsNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            if (blockWrite) return;
+            if (blockWrite)
+            {
+                return;
+            }
             //Registry.SetValue(registrykey, "timeUnit", timeUnitComboBox.SelectedIndex);
             string[] lines = File.ReadAllLines(localApplicationDataPath + "\\data.save");
             string options = lines[sourceFoldersListBox.SelectedIndex].Substring(lines[sourceFoldersListBox.SelectedIndex].LastIndexOf(">"));
@@ -341,24 +353,24 @@ namespace AutoBackup
 
         private void NotifyIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            this.WindowState = FormWindowState.Normal;
-            this.Visible = true;
-            this.ShowInTaskbar = true;
+            WindowState = FormWindowState.Normal;
+            Visible = true;
+            ShowInTaskbar = true;
             backup.windowVisible = true;
         }
 
         private void MainForm_SizeChanged(object sender, EventArgs e)
         {
-            addFolderPopup.Location = new Point(this.Width / 2 - addFolderPopup.Width / 2, this.Height / 2 - addFolderPopup.Height / 2);
+            addFolderPopup.Location = new Point(Width / 2 - addFolderPopup.Width / 2, Height / 2 - addFolderPopup.Height / 2);
 
             int space = 20;
 
-            sourceFoldersListBox.Height = this.Height - 243;
-            sourceFoldersListBox.Width = this.Width / 2 - 13 - space;
+            sourceFoldersListBox.Height = Height - 243;
+            sourceFoldersListBox.Width = Width / 2 - 13 - space;
 
-            destinationFoldersListBox.Height = this.Height - 243;
-            destinationFoldersListBox.Location = new Point(this.Width / 2 - 15 + space, destinationFoldersListBox.Location.Y);
-            destinationFoldersListBox.Width = this.Width / 2 - 13 - space;
+            destinationFoldersListBox.Height = Height - 243;
+            destinationFoldersListBox.Location = new Point(Width / 2 - 15 + space, destinationFoldersListBox.Location.Y);
+            destinationFoldersListBox.Width = Width / 2 - 13 - space;
 
             addSourceFolderButton.Location = new Point(sourceFoldersListBox.Location.X, sourceFoldersListBox.Height + 25);
             removeSourceFolderButton.Location = new Point(sourceFoldersListBox.Location.X + sourceFoldersListBox.Width - removeSourceFolderButton.Width, sourceFoldersListBox.Height + 25);
@@ -369,7 +381,7 @@ namespace AutoBackup
             sourceDirectoriesLabel.Location = new Point(sourceFoldersListBox.Location.X + sourceFoldersListBox.Width / 2 - sourceDirectoriesLabel.Width / 2, sourceDirectoriesLabel.Location.Y);
             destinationDirectoriesLabel.Location = new Point(destinationFoldersListBox.Location.X + destinationFoldersListBox.Width / 2 - destinationDirectoriesLabel.Width / 2, destinationDirectoriesLabel.Location.Y);
 
-            mainPanel.Height = this.Height;
+            mainPanel.Height = Height;
 
             if (WindowState == FormWindowState.Minimized && ShowInTaskbar == true)
             {

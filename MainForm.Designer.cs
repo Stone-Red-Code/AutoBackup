@@ -218,7 +218,7 @@
             this.mainPanel.Controls.Add(this.addDestinationFolderButton);
             this.mainPanel.Location = new System.Drawing.Point(0, 0);
             this.mainPanel.Name = "mainPanel";
-            this.mainPanel.Size = new System.Drawing.Size(774, 440);
+            this.mainPanel.Size = new System.Drawing.Size(759, 440);
             this.mainPanel.TabIndex = 8;
             // 
             // optionsPanel
